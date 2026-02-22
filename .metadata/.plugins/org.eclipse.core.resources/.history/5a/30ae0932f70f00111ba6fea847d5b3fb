@@ -1,6 +1,6 @@
 spring.application.name=taskflowv3
 
-spring.profiles.active=${SPRING_PROFILES_ACTIVE}
+spring.profiles.active=DEV
 
 jwt.secret=${JWT_SECRET}
 
