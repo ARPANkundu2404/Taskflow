@@ -1,0 +1,41 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: taskflow-mysql
+    restart: always
+    environment:
+      # Use variables from your .env file
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: taskflowDEV
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: .
+    container_name: taskflow-backend
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    environment:
+      # Profile and App Name from pom.xml and properties 
+      SPRING_PROFILES_ACTIVE: DEV
+      SPRING_APPLICATION_NAME: taskflowv3
+      
+      # Database connection using the service name 'mysql' as the host
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/taskflowDEV
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      
+      # Security and Mail from your .env file
+      JWT_SECRET: ${JWT_SECRET}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+      
+      # Logging path matching your environment setup
+      LOG_FILE_PATH: ${LOG_FILE_PATH}
+
+volumes:
+  mysql_data:
