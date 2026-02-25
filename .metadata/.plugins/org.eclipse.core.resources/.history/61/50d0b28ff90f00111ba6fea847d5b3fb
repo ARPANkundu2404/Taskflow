@@ -1,0 +1,14 @@
+# Application Settings
+SPRING_PROFILES_ACTIVE=DEV
+
+# Database Configuration
+DB_URL=jdbc:mysql://localhost:3306/taskflowpPROD
+DB_USERNAME=root
+DB_PASSWORD=root
+
+# Security
+JWT_SECRET=56wbzjO4rg7jqhfEuU4ZCRN+q4Heo2yaGNmSI7Ms69g=
+
+# Mail Configuration (Fill in your credentials)
+SPRING_MAIL_USERNAME=jayanta4u2006@gmail.com
+SPRING_MAIL_PASSWORD=uiev mwbm iper qvhb
